@@ -1,18 +1,13 @@
 'use strict';
 
-var request = require('supertest');
 var createDatabase = require('../lib/commands/createDatabase');
 var deleteDatabase = require('../lib/commands/deleteDatabase');
-var config = require('../lib/utils/loadConfig');
 var apikey = null;
 var id = null;
 
 var api = require('../lib/server');
 var stubs;
-
 var databasename = (new Date()).getTime();
-
-request = request("http://localhost:"+config.apiport+"/api");
 
 module.exports = {
   setUp: function (callback) {
@@ -50,7 +45,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename;
+    stubs.request.url = '/database/'+databasename;
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -65,7 +60,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/test';
+    stubs.request.url = '/database/'+databasename+'/collection/test';
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -80,7 +75,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/test?apikey='+apikey;
+    stubs.request.url = '/database/'+databasename+'/collection/test?apikey='+apikey;
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -95,7 +90,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/test?apikey=1234&user=admin';
+    stubs.request.url = '/database/'+databasename+'/collection/test?apikey=1234&user=admin';
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -110,7 +105,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/test?apikey='+apikey+'&user=admin';
+    stubs.request.url = '/database/'+databasename+'/collection/test?apikey='+apikey+'&user=admin';
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -125,7 +120,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/test';
+    stubs.request.url = '/database/'+databasename+'/collection/test';
     stubs.request.method = "POST";
 
     api(stubs.request, stubs.response);
@@ -143,7 +138,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin';
+    stubs.request.url = '/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin';
     stubs.request.method = "GET";
 
     api(stubs.request, stubs.response);
@@ -159,7 +154,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/users';
+    stubs.request.url = '/database/'+databasename+'/collection/users';
     stubs.request.method = "PUT";
 
     api(stubs.request, stubs.response);
@@ -177,7 +172,7 @@ module.exports = {
       test.done();
     };
 
-    stubs.request.url = '/api/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin&id='+id;
+    stubs.request.url = '/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin&id='+id;
     stubs.request.method = "DEL";
 
     api(stubs.request, stubs.response);

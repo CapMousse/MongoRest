@@ -1,3 +1,5 @@
 node_modules/
 .DS_Store
 config.json
+all-logs.log
+exceptions.log

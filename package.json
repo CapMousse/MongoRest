@@ -21,7 +21,8 @@
   "main": "lib/cli.js",
   "dependencies": {
     "mongodb": "*",
-    "clifier": "*"
+    "clifier": "*",
+    "winston": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1",
