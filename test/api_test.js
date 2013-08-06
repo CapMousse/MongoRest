@@ -173,7 +173,7 @@ module.exports = {
     };
 
     stubs.request.url = '/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin&id='+id;
-    stubs.request.method = "DEL";
+    stubs.request.method = "DELETE";
 
     api(stubs.request, stubs.response);
   },
