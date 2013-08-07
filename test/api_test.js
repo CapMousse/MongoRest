@@ -144,6 +144,21 @@ module.exports = {
     api(stubs.request, stubs.response);
   },
 
+  "Status 200 when get data but empty": function(test){
+    test.expect(2);
+
+    stubs.response.end = function(){
+      test.equal(stubs.response.status, 200);
+      test.equal(stubs.response.content.data.length, 0);
+      test.done();
+    };
+
+    stubs.request.url = '/database/'+databasename+'/collection/users?apikey='+apikey+'&user=admin&readonly=0';
+    stubs.request.method = "GET";
+
+    api(stubs.request, stubs.response);
+  },
+
 
   "Status 200 when put data": function(test){
     test.expect(2);
@@ -180,5 +195,6 @@ module.exports = {
   
   tearDown: function (callback) {
     deleteDatabase(databasename, callback);
+    stubs.response.end = function(){};
   }
 };
