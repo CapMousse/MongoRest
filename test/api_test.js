@@ -24,9 +24,10 @@ module.exports = {
   "send error 400 when missing database name": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 400);
-      test.equal(stubs.response.content.content, "Missing database");
+      json = JSON.parse(json);
+      test.equal(json.content, "Missing database");
       test.done();
     };
 
@@ -39,9 +40,10 @@ module.exports = {
   "send error 400 when missing collection name": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 400);
-      test.equal(stubs.response.content.content, "Missing collection");
+      json = JSON.parse(json);
+      test.equal(json.content, "Missing collection");
       test.done();
     };
 
@@ -54,9 +56,10 @@ module.exports = {
   "send error 400 when missing apikey": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 400);
-      test.equal(stubs.response.content.content, "Missing api key");
+      json = JSON.parse(json);
+      test.equal(json.content, "Missing api key");
       test.done();
     };
 
@@ -69,9 +72,10 @@ module.exports = {
   "send error 400 when missing user name": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 400);
-      test.equal(stubs.response.content.content, "Missing user");
+      json = JSON.parse(json);
+      test.equal(json.content, "Missing user");
       test.done();
     };
 
@@ -84,9 +88,10 @@ module.exports = {
   "send error 401 when bad api key": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 401);
-      test.equal(stubs.response.content.content, "Forbidden");
+      json = JSON.parse(json);
+      test.equal(json.content, "Forbidden");
       test.done();
     };
 
@@ -99,9 +104,10 @@ module.exports = {
   "Status 200 when all infos are ok": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 200);
-      test.equal(stubs.response.content.data.length, 0);
+      json = JSON.parse(json);
+      test.equal(json.data.length, 0);
       test.done();
     };
 
@@ -114,9 +120,10 @@ module.exports = {
   "Status 200 when insert data": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 200);
-      test.equal(stubs.response.content.data[0].name, 'test');
+      json = JSON.parse(json);
+      test.equal(json.data[0].name, 'test');
       test.done();
     };
 
@@ -132,9 +139,10 @@ module.exports = {
   "Status 200 when get data": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 200);
-      test.equal(stubs.response.content.data[0].name, 'admin');
+      json = JSON.parse(json);
+      test.equal(json.data[0].name, 'admin');
       test.done();
     };
 
@@ -147,9 +155,10 @@ module.exports = {
   "Status 200 when get data but empty": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 200);
-      test.equal(stubs.response.content.data.length, 0);
+      json = JSON.parse(json);
+      test.equal(json.data.length, 0);
       test.done();
     };
 
@@ -163,9 +172,10 @@ module.exports = {
   "Status 200 when put data": function(test){
     test.expect(2);
 
-    stubs.response.end = function(){
+    stubs.response.end = function(json){
       test.equal(stubs.response.status, 200);
-      test.equal(stubs.response.content.data.readonly, true);
+      json = JSON.parse(json);
+      test.equal(json.data.readonly, true);
       test.done();
     };
 
